@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            .img {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 90%;
+            }
+
+            nav {
+                overflow: auto;
+                width: 100%;
+                background-color: #0b5070de;
+            }
+
+            ul {
+                padding: 0;
+                margin: 0 0 0 1000px;
+                list-style: none;
+            }
+
+            li {
+                float: right;
+            }
+
+            .logo img {
+                position: absolute;
+                margin-top: 15px;
+                margin-left: 10px;
+                width: 10%;
+                height: 15%;
+            }
+            .head h2 {
+                position: absolute;
+                margin-top: 15px;
+                margin-left: 180px;
+                color: #f2f2f2;
+                font-size: 35px;
+            }
+
+            nav a {
+                width: 100px;
+                display: block;
+                float: right;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 20px 15px;
+                text-decoration: none;
+            }
+
+            nav a:hover {
+                background: gray;
+                transition: 0.5s;
+            }
+
+            input[type=text], select {
+                padding: 10px 10px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 20px;
+                box-sizing: border-box;
+            }
+            input[type=submit] {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px 25px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+            }
+            input[type=submit]:hover {
+                background-color: #45a049;
+            }
+            div {
+                border-radius: 5px;
+                padding: 3px;
+            }
+        </style>
+
+    <body>
+
+        <div class ="logo"><a href="#"><img src="{% static 'picture/img.png' %}"></a>
+        </div>
+        
+        <div class="head">
+            <h2><b><i>Lajhna Ventures LLP</i></b></h2>
+        </div>
+
+        <nav><ul>
+            <li><a href="admin/logout">Logout</a></li>
+            <li><a href="admin">Admin</a></li>
+        </ul></nav>
+        <br><br><br>
+
+        <img src="{% static 'picture/img.jpeg' %}" style="height: 300px;" class="img">
+
+       <h3>&ensp; Please Enter Details Here</h3>
+        <br>
+        <div>
+          <form action="incentive" method="POST">
+              {% csrf_token %}
+            <label for="id"> &ensp; Staff ID:</label>
+            <input type="text" id="staff_id" name="staff_id" placeholder="Enter ID.." required>
+            &ensp;
+            <label for="year"> &ensp; Year:</label>
+            <input type="text" id="year" name="year" placeholder="Enter Year.." required>
+            &ensp;
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+       
+    </body>
+</html>

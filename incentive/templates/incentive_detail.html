@@ -1,0 +1,238 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Incentive Details</title>
+</head>
+
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Times New Roman';
+    }
+
+    nav {
+      width: 100%;
+      height: 150px;
+      background-color: #facc01fb;
+    }
+
+    .logo img {
+      margin-top: 15px;
+      margin-left: 10px;
+      width: 12%;
+      height: 125px;
+
+    }
+
+    .head h6 {
+      position: absolute;
+      margin-top: -125px;
+      margin-left: 200px;
+      color: #050000;
+      font-size: 17px;
+      font-family: 'Times New Roman';
+    }
+
+    h4.header{
+      text-align: center;
+      font-family: 'Times New Roman';
+    }
+
+    li.menu{
+      float: right;
+      list-style: none;
+      margin-top: -150px;
+    }
+    
+    li a{
+      text-decoration: none;
+      color: black;
+      display: inline-block;
+      padding: 8px 16px;
+    }
+
+    .back{
+      color: black;
+      background-color: white;
+    }
+
+    table, thead, th, td {
+      border: 1px solid black;
+      text-align: center;
+    }
+
+    table.center{
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    thead.color{
+      background-color: #facc01fb;
+    }
+
+    .row{
+      display: flex;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+
+    .column{
+      flex: 50%;
+      padding: 5px;
+    }
+
+    #table1 #tr1 td:nth-child(5){
+      background: rgb(184, 181, 181);
+    }
+
+
+</style>
+
+<body>
+  <nav>
+
+    <div class ="logo"><a href="#"><img src="{% static 'picture/logo.jpg' %}"></a>
+    </div>
+
+    <div class="head">
+      <li><h6><b>Staff Name : 
+        {% if staff_data %}
+          {% for i in staff_data %}
+            {{i.staff_name}}
+      </b></h6></li>
+      <li><h6><b>Franchise Code : {{i.franchise_code}} {{franchise}}
+
+      </b></h6></li>
+      <li><h6><b>Designation : {{designation}}</b></h6></li>
+      <li><h6><b>Staff Code : {{i.id}}</b></h6></li>
+      <li><h6><b>Introducer : {{introducer}}</b></h6></li>
+      <li><h6><b>Introducer Code : {{i.introducer_id}}</b></h6></li>
+      {% endfor %}
+      {% endif %}
+    </div>
+    <div><li class="menu"><a href="javascript:javascript:history.go(-1)" class="back">&laquo Back</a></li></div>
+
+  </nav>
+  <div>
+    <h4 class="header"><b><i>INCENTIVE DETAILS({{year}})</i></b></h4>            
+    <table class="center"  id="table1">
+    <thead class="color">
+      <tr>
+        <th scope="col">Month</th>
+        <th scope="col">Direct Point</th>
+        <th scope="col">Team Point</th>
+        <th scope="col">Equal Share</th>
+        <th scope="col">Travel Fund</th>
+        <th scope="col">Car Fund</th>
+        <th scope="col">Home Fund</th>
+        <th scope="col">Total</th>
+        <th scope="col">Welfare</th>
+        <th scope="col">TDS</th>
+        <th scope="col">Payable Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% if data %} 
+      {% for i in data %} 
+      <tr id="tr1">
+        <td>{{i.month}}</td>
+        <td>{{i.self_point}}</td>
+        <td>{{i.team_point}}</td>
+        <td>{{i.equal_share}}</td>
+        <td>{{i.travel_fund}}</td>
+        <td>{{i.car_fund}}</td>
+        <td>{{i.home_fund}}</td>
+        <td>{{i.total_incentive}}</td>
+        <td>{{i.welfare}}</td>
+        <td>{{i.tds}}</td>
+        <td>{{i.net_incentive_payable}}</td>
+      </tr>
+      {% endfor %}
+      <tr style="background-color: #facc01fb;">
+        <td colspan="1"><b>Total</td>
+        <td><b>{{totaldirect}}</b></td>
+        <td><b>{{totalteam}}</b></td>
+        <td><b>{{totalequal}}</b></td>
+        <td><b>{{totaltravel}}</b></td>
+        <td><b>{{totalcar}}</b></td>
+        <td><b>{{totalhome}}</b></td>
+        <td><b>{{totalincentive}}</b></td>
+        <td><b>{{totalwelfare}}</b></td>
+        <td><b>{{totaltds}}</b></td>
+        <td><b>{{totalamount}}</b></td>
+      </tr>
+    {% else %}
+      <h4><b><i> &emsp;&emsp;&emsp; &emsp;&emsp;&emsp; &emsp;&emsp; &emsp; &emsp;&emsp; &emsp; &emsp;&emsp; &emsp;No Incentives</i></b></h4>
+    {% endif %}
+    </tbody>
+    </table>
+    <br><br>
+  </div>  
+  <div class="row">
+    <div class="column">
+    <h4><b><i> &emsp;&emsp;&emsp; &emsp;&emsp;&emsp; &emsp;&emsp; &emsp;PAYMENT DETAILS</i></b></h4>            
+    <table>
+    <thead class="color">
+      <tr>
+        <th scope="col">Month</th>
+        <th scope="col">Date</th>
+        <th scope="col">Bank Account</th>
+        <th scope="col">IFSC Code</th>
+         <th scope="col">Paid Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% if datas %} 
+      {% for i in datas %} 
+      <tr>
+        <td>{{i.month}}</td>
+        <td>{{i.date}}</td>
+        <td>{{i.account_number}}</td>
+        <td>{{i.ifsc_code}}</td>
+        <td>{{i.amount}}</td>
+      </tr>
+      {% endfor %}
+      <tr style="background-color: #facc01fb;">
+        <td style="text-align: left;" colspan="4"><b>Total</b></td>
+        <td><b>{{totalpayment}}</b></td>
+      </tr>
+    {% else %}
+    <tr>
+      <h4><b><i>No Payments</i></b></h4>
+    </tr>
+    {% endif %}
+    </tbody>
+    </table>
+  </div>
+  <div class="column">         
+  <table>
+  <thead class="color">
+    <tr><br><br><br><br><br><br>
+      <th scope="col" colspan="2"><i>SUMMARY</i></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Opening amount to pay from previous: </td>
+      <td>{{openingbalance}}</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Total Incentive Achieved:</td>
+      <td>{{totalamount}}</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;">Total Paid Amount:</td>
+      <td>{{totalpayment}}</td>
+    </tr>
+    <tr style="background-color: #facc01fb;">
+      <td style="text-align: left;"><b>Balance To Pay:</b></td>
+      <td><b>{{totalbalance}}</b></td>
+    </tr>
+    </tbody>
+    </table>
+  </div>
+  </div>
+</body>
+</html>
